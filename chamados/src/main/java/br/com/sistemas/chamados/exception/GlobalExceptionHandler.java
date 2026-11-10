@@ -34,13 +34,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErroResposta> jsonInvalido(HttpMessageNotReadableException ex) {
         return montar(HttpStatus.BAD_REQUEST, "JSON inválido",
-                List.of("Verifique o corpo JSON e os tipos dos campos. Para perfil, use ADMIN ou TECNICO."));
+                List.of("Verifique o corpo JSON, os tipos dos campos e os valores dos enums."));
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErroResposta> parametroInvalido(MethodArgumentTypeMismatchException ex) {
         return montar(HttpStatus.BAD_REQUEST, "Parâmetro inválido",
                 List.of(ex.getName() + ": valor incompatível com o tipo esperado"));
+    }
+
+    @ExceptionHandler(ParametroInvalidoException.class)
+    public ResponseEntity<ErroResposta> parametroInvalido(ParametroInvalidoException ex) {
+        return montar(HttpStatus.BAD_REQUEST, ex.getMessage(), List.of());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

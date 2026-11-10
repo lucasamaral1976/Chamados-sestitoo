@@ -1,38 +1,32 @@
 # Sistema de chamados
 
-## Rotas até a aula 7
+Projeto em Java 21 com Spring Boot, Maven e banco H2 ou PostgreSQL.
 
-| Método | Clientes | Categorias | Técnicos | Retorno |
-| --- | --- | --- | --- | --- |
-| POST | /clientes | /categorias | /tecnicos | 201 |
-| GET | /clientes | /categorias | /tecnicos | 200 |
-| GET | /clientes/{id} | /categorias/{id} | /tecnicos/{id} | 200 |
-| PUT | /clientes/{id} | /categorias/{id} | /tecnicos/{id} | 200 |
-| DELETE | /clientes/{id} | /categorias/{id} | /tecnicos/{id} | 204 |
+Para executar, na pasta `chamados`: `.\mvnw.cmd spring-boot:run`.
+Para rodar os testes: `.\mvnw.cmd verify`.
 
-## Exemplos de teste
+## Rotas
 
-Com a aplicação rodando em `http://localhost:8080`, enviar pelo Postman ou Insomnia com Body JSON:
+- `/clientes`, `/categorias`, `/tecnicos` e `/chamados`: POST e GET; com `/{id}`, GET, PUT e DELETE.
+- PATCH `/chamados/{id}/atribuir` e `/chamados/{id}/status`.
+- GET `/clientes/{clienteId}/chamados`.
+- POST e GET `/chamados/{chamadoId}/comentarios`.
 
-POST `/clientes`
+## Exemplo de teste
 
-```json
-{"nome":"Ana Souza","email":"ana@exemplo.com","telefone":"47999999999"}
-```
-
-POST `/categorias`
+Com cliente e categoria cadastrados, enviar POST para `http://localhost:8080/chamados`, usando os IDs retornados:
 
 ```json
-{"nome":"Rede","descricao":"Problemas de rede"}
+{"titulo":"Sem internet","descricao":"Rede indisponivel","prioridade":"ALTA","clienteId":1,"categoriaId":1}
 ```
 
-POST `/tecnicos`
+Esperado: 201 e o chamado com status ABERTO.
 
-```json
-{"nome":"Joao Silva","email":"joao@exemplo.com","perfil":"TECNICO"}
+Exemplo de consulta com filtros e paginação:
+
+```text
+GET /chamados?status=ABERTO&prioridade=ALTA&clienteId=1&page=0&size=10&sort=id,desc
 ```
 
-Resultado esperado nos três POSTs: 201, com o ID do registro criado.
-Para conferir, fazer GET na mesma rota, acrescentando o ID retornado. Esperado: 200 com os dados cadastrados.
-
-Dados inválidos devem retornar 400; ID inexistente, 404; e-mail ou nome de categoria duplicado, 409.
+Documentação da API: `http://localhost:8080/swagger-ui/index.html`.
+Para usar PostgreSQL, ativar o profile `postgres` e configurar `DB_URL`, `DB_USERNAME` e `DB_PASSWORD`.
