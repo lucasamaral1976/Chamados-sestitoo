@@ -2,6 +2,8 @@
 
 Projeto em Java 21 com Spring Boot, Maven e banco H2 ou PostgreSQL.
 
+Interface de atendimento: `http://localhost:8080/`.
+
 Para executar, na pasta `chamados`: `.\mvnw.cmd spring-boot:run`.
 Para rodar os testes: `.\mvnw.cmd verify`.
 

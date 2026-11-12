@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1d302b">
+  <meta name="description" content="Central de atendimento para gerenciar chamados, clientes e sua equipe técnica.">
+  <title>Fila — Central de suporte</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script type="module" src="/assets/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+  <button class="nav-backdrop" id="nav-backdrop" aria-label="Fechar menu" hidden></button>
+  <aside class="sidebar" id="sidebar" aria-label="Menu principal">
+    <a class="brand" href="#/" aria-label="Fila, visão geral"><span class="brand-mark">f<span></span></span><span>fila<span class="brand-dot">.</span></span></a>
+    <div class="workspace-label"><span class="workspace-symbol" data-icon="layers"></span><span>Central de suporte<small>Seu espaço de atendimento</small></span></div>
+    <p class="nav-heading">PRINCIPAL</p>
+    <nav class="nav-list">
+      <a class="nav-link" data-nav="dashboard" href="#/"><span data-icon="dashboard"></span><span>Visão geral</span></a>
+      <a class="nav-link" data-nav="chamados" href="#/chamados" aria-label="Chamados"><span data-icon="ticket"></span><span>Chamados</span><span class="nav-count" id="open-count" aria-hidden="true" hidden></span></a>
+    </nav>
+    <p class="nav-heading nav-heading-second">CADASTROS</p>
+    <nav class="nav-list">
+      <a class="nav-link" data-nav="clientes" href="#/clientes"><span data-icon="users"></span><span>Clientes</span></a>
+      <a class="nav-link" data-nav="categorias" href="#/categorias"><span data-icon="layers"></span><span>Categorias</span></a>
+      <a class="nav-link" data-nav="tecnicos" href="#/tecnicos"><span data-icon="headphones"></span><span>Equipe técnica</span></a>
+    </nav>
+    <div class="sidebar-bottom"><div class="sidebar-note"><span class="note-orbit" data-icon="spark"></span><p>Menos ruído.<br><strong>Mais solução.</strong></p><span class="note-line"></span></div><span class="sidebar-footer">FILA / CENTRAL DE ATENDIMENTO</span></div>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-button menu-toggle" id="menu-toggle" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false"><span data-icon="menu"></span></button>
+      <div class="breadcrumb"><span>Área de trabalho</span><span class="crumb-separator">/</span><strong id="breadcrumb-current">Visão geral</strong></div>
+      <div class="topbar-actions"><span class="connection" id="connection"><i></i><span>Conectando</span></span><span class="topbar-divider"></span><span class="workspace-avatar" title="Central de suporte" data-icon="headphones"></span></div>
+    </header>
+    <main id="main" tabindex="-1" aria-label="Conteúdo principal"></main>
+    <footer class="app-footer"><span>Fila. Central de suporte</span><span id="footer-date"></span></footer>
+  </div>
+  <div id="drawer-root"></div>
+  <dialog class="form-dialog" id="form-dialog" aria-labelledby="form-title"><div id="form-content"></div></dialog>
+  <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title"><div class="confirm-body"><span class="confirm-symbol" data-icon="alert"></span><h2 id="confirm-title"></h2><p id="confirm-text"></p></div><div class="dialog-footer"><button class="button button-secondary" id="confirm-cancel">Cancelar</button><button class="button button-danger" id="confirm-accept">Confirmar</button></div></dialog>
+  <div class="toast-stack" id="toasts" aria-live="polite" aria-atomic="false"></div>
+</body>
+</html>
